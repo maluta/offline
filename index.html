@@ -2,8 +2,32 @@
 <html>
 <head>
 <title></title>
+  <script>
+    
+let isOffline = false;
+window.addEventListener('load', checkConnectivity);
+
+// when the page has finished loading,
+// listen for future changes in connection
+function checkConnectivity() {
+  updateStatus();
+  window.addEventListener('online', updateStatus);
+  window.addEventListener('offline', updateStatus);
+}
+
+// check if we're online, set a class on <html> if not
+function updateStatus() {
+  if (typeof navigator.onLine !== 'undefined'){
+    isOffline = !navigator.onLine;
+    document.documentElement.classList.toggle('is-offline', isOffline);
+   
+  }
+}
+  </script>
 </head>
 <body>
-You are not offline
-</body>
+  <div id='root'>
+      You are <b>not</b> offline
+  </div>
+    </body>
 </html
